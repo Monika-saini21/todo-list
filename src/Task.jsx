@@ -1,30 +1,14 @@
 import {useState} from 'react'
 import'./task.css'
-function Task( ) {
+function Task({filtered,handleChange, handleDelete,Todo,setTodo }) {
     
       const[show,setShow]=useState(false);
     
-      const [Todo, setTodo] = useState([  
-        { id: 102,
-        task:"go to gym ",
-        purpose:"working",
-        time: "12:02"},
-        { id: 103,
-        task:"Attend the piano class",
-         purpose:"learning",
-        time: "02:02"
-        },
-          { id: 104,
-        task:"complete my office work",
-         purpose:"working",
-       time: "06:02"}
-      ])
-       const [input, setInput] = useState({
-      task:"",
+      const [input, setInput] = useState({ task:"",
       purpose:"",
-      time:""
-     })
+      time:""})
     
+      
       function clickhandle(e){
          e.preventDefault();
       if(input.task.trim() === "" )return;
@@ -39,38 +23,25 @@ function Task( ) {
         const {name,value}=e.target;
         setInput({...input,[name]:value});
       }
-     const handleDelete = (id) => {
-        const updatedData = Todo.filter((todo) =>todo.id !== id);
-        setTodo(updatedData);
-      };
-    
-       const handleChange = (id) => {
-        const updateText = Todo.map((todo) => todo.id === id ?{ ...todo, isChecked: !todo.isChecked} : todo);
-        setTodo(updateText);
-      };
   return (
-    <div>
-      <div className='title'>
-        <samp >
-      <h1 className='activitises'>Today Activities</h1>
-      <p className='activitises'>Manage your habits,reminders,events,activities,</p>
-      </samp>
+    <>
      <button className='add-todo' onClick={()=> setShow(true)}>
      + add todo
      </button>
-     </div>
+     
      {show &&(
       <div className='fome-bg'>
        <form className='todo-fome' onSubmit={clickhandle}>
       <img className='delete-fome' onClick={() => setShow(false)} src='https://cdn-icons-png.flaticon.com/128/657/657059.png' />
       <h1 className='todo-heading'>todo</h1>
        
-         <input className='todo'
-       type='text'
-       name='purpose'
-       value={input.purpose} 
-       onChange={handleInput}
-       placeholder='enter the purpose'/>
+         <select className='todo'
+         name='purpose' placeholder='enter the purpose'  onChange={handleInput}>
+          <option className='purpose' value={input.purpose} >enter the purpose</option>
+      <option value={input.purpose} >working</option>
+      <option value={input.purpose} >learning</option>
+       
+       </select>
 
       <input className='todo'
        type='text'
@@ -93,9 +64,11 @@ function Task( ) {
       </form>
       </div>
      )}
-     <ul className='taskbox'>{
-     Todo.length>0?
-     Todo.map((todo)=>
+
+
+       <ul className='taskbox'>{
+     filtered.length>0?
+     filtered.map((todo)=>
 
         <div className='box'>
       <li key={todo.id}  style={{
@@ -128,7 +101,7 @@ function Task( ) {
      }
      
      </ul>
-    </div>
+    </>
   )
 }
 

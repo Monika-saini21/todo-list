@@ -1,14 +1,14 @@
 
 import './Nav.css'
 
-function Nav(handleSearch,searchTerm,setSearchTerm ,) {
+function Nav( {searchTerm,setSearchTerm} ) {
 
   return (
     <div className="list" >
     <div className="nav">
     <p className=" heading">Todo app</p>
     
-   <form  className="search" onSubmit={handleSearch}>
+   <form  className="search" >
     <input className="input" type="text" value={searchTerm} placeholder="Search the task" onChange={(e) => setSearchTerm(e.target.value)} />
    <img className="searchicon" src="https://cdn-icons-png.flaticon.com/128/54/54481.png" alt=""  /> 
   </form>
@@ -23,6 +23,7 @@ function Nav(handleSearch,searchTerm,setSearchTerm ,) {
             <li>Forms</li>
         </ul>
     </div>
+   
     </div>
   )
 }
