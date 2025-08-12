@@ -1,63 +1,20 @@
-import { useState } from 'react'
-import Nav from './Nav';
 
-import Task from './Task';
-
-
+import Nav from './components/Nav';
+import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
 
 function App() {
-  
-   const [searchTerm, setSearchTerm] = useState("");
-  
-    
-      const [Todo, setTodo] = useState([  
-        { id: 102,
-        task:"go to gym ",
-        purpose:"working",
-        time: "12:02"},
-        { id: 103,
-        task:"Attend the piano class",
-         purpose:"learning",
-        time: "02:02"
-        },
-          { id: 104,
-        task:"complete my office work",
-         purpose:"working",
-       time: "06:02"}
-      ])
- 
-    
-      
-     const handleDelete = (id) => {
-        const updatedData = Todo.filter((todo) =>todo.id !== id);
-        setTodo(updatedData);
-      };
-    
-       const handleChange = (id) => {
-        const updateText = Todo.map((todo) => todo.id === id ?{ ...todo, isChecked: !todo.isChecked} : todo);
-        setTodo(updateText);
-      };
-  
-  const filtered = Todo.filter(todo=>  todo.task.toLowerCase().includes(searchTerm.toLowerCase())
-  );
- 
-  return (
+  const isDark = useSelector((state) => state.darkmode.dark);
+ return (
     <>
-  <Nav searchTerm={searchTerm}
-  setSearchTerm={setSearchTerm}/>
-
-
-
-    <div>
-     
-     {/* {Todo.map((Todo)=>  */}
-     <Task filtered={filtered}
-     handleChange ={handleChange } 
-      handleDelete ={ handleDelete}
-      Todo={Todo}
-      setTodo={setTodo} />
-    {/* ) } */}
-    </div>
+    <div
+      className={`min-h-screen  transition-all duration-500
+        ${isDark ? 'bg-gray-950 text-white' : 'bg-white text-black'}
+      `}
+    >
+  <Nav />
+  <Outlet/>
+ </div>
 </>
   )
 }
