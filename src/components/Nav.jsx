@@ -1,8 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import Button from "./button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchQuery } from "../features/searchSlice";
 
 function Nav() {
+ const dispatch = useDispatch();
+  const searchQuery = useSelector(state => state.search.searchQuery);
+
    const location = useLocation();
 
   const menuItems = [
@@ -23,8 +27,9 @@ function Nav() {
             type="text"
      
             placeholder="Search the task"
-          
-            className="pl-6 pr-3 py-2 w-[220px] rounded-lg bg-gray-100 text-gary-400 border-none focus:outline-none"
+             value={searchQuery}
+             onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+            className="pl-6 pr-3 py-2 w-[220px] text-black rounded-lg bg-gray-100 text-gary-400 border-none focus:outline-none"
           />
           <img
             className="w-[14px] h-[14px] absolute left-2 top-1/2 transform -translate-y-1/2"

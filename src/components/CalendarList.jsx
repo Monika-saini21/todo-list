@@ -1,8 +1,21 @@
+import { useSelector } from "react-redux";
+
 function CalendarList ({Todo ,handleDelete}){
+    const searchQuery = useSelector((state) => state.search.searchQuery);
+  
+    
+    const filteredTodos = Todo.filter((todo) =>
+      (todo.task || "")
+        .toLowerCase()
+        .includes((searchQuery || "").toLowerCase()) ||
+      (todo.purpose || "")
+        .toLowerCase()
+        .includes((searchQuery || "").toLowerCase())
+    );
     return(
         <div className="flex-col">
-                  {Todo.length > 0 ? (
-                    Todo.map((todo) => (
+                  {filteredTodos.length > 0 ? (
+                    filteredTodos.map((todo) => (
                       <div
                         key={todo.id}
                         className="bg-gray-200 m-9 mb-3 mt-5 h-20 shadow-md shadow-gray-400 rounded-2xl flex p-1"
