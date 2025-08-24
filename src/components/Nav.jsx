@@ -11,10 +11,10 @@ function Nav() {
 
   const menuItems = [
     { name: "Board", path: "/" },
-    { name: "List", path: "/list" },
-    { name: "Timeline", path: "/timeline" },
+    // { name: "List", path: "/list" },
+    // { name: "Timeline", path: "/timeline" },
     { name: "Calendar", path: "/calendar" },
-    { name: "Forms", path: "/forms" },
+    // { name: "Forms", path: "/forms" },
   ];
       const isDark = useSelector((state) => state.darkmode.dark);
   return (

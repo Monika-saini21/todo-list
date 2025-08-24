@@ -16,28 +16,28 @@ function Tasklist() {
       .toLowerCase()
       .includes((searchQuery || "").toLowerCase())
   );
-
+    const pendingTodos = filteredTodos.filter((todo) => !todo.isChecked);
+  const completedTodos = filteredTodos.filter((todo) => todo.isChecked);
   return (
-    <div className="flex justify-center">
+     <div className="flex flex-col items-center w-full">
+      {/* Pending Tasks */}
+      <h2 className="text-xl font-bold mt-4 mb-2 ">
+        Pending Tasks
+      </h2>
       <ul
-        className={`flex flex-wrap px-6 justify-start gap-6 rounded-xl w-270 mt-4 ${
+        className={`flex flex-wrap px-6 justify-start gap-6 rounded-xl w-270 ${
           isDark ? "bg-gray-800" : "bg-gray-100"
         }`}
       >
-        {filteredTodos.length > 0 ? (
-          filteredTodos.map((todo) => (
+        {pendingTodos.length > 0 ? (
+          pendingTodos.map((todo) => (
             <div
               key={todo.id}
               className={`w-60 h-40 my-6 rounded-md p-2 ${
                 isDark ? "bg-gray-100" : "bg-white"
               }`}
             >
-              <li
-                className="list-none"
-                style={{
-                  textDecoration: todo.isChecked ? "line-through" : "none",
-                }}
-              >
+              <li className="list-none">
                 <div className="flex justify-between items-center">
                   <span>
                     <input
@@ -66,16 +66,69 @@ function Tasklist() {
             </div>
           ))
         ) : (
-          <div className="w-270 py-4 rounded-2xl">
+           <div className="w-270 py-4 rounded-2xl">
             <img
-              className="ml-100 w-55"
+              className="ml-107 w-55"
               src="https://cdn-icons-png.flaticon.com/128/18735/18735401.png"
               alt="empty"
             />
-            <p className="text-center text-lg">Your todo is empty</p>
+            <p className="text-center text-lg">Np pending tasks</p>
           </div>
         )}
       </ul>
+
+      {/* Completed Tasks */}
+      {completedTodos.length > 0 && (
+        <>
+          <h2 className="text-xl font-bold mt-8 mb-2">
+            Completed Tasks
+          </h2>
+          <ul
+            className={`flex flex-wrap px-6 justify-start gap-6 rounded-xl w-270 ${
+              isDark ? "bg-gray-800" : "bg-gray-100"
+            }`}
+          >
+            {completedTodos.map((todo) => (
+              <div
+                key={todo.id}
+                className={`w-60 h-40 my-6 rounded-md p-2 ${
+                  isDark ? "bg-gray-100" : "bg-white"
+                }`}
+              >
+                <li
+                  className="list-none"
+                  style={{ textDecoration: "line-through" }}
+                >
+                  <div className="flex justify-between items-center">
+                    <span>
+                      <input
+                        type="checkbox"
+                        checked={true}
+                        onChange={() => dispatch(handleChange(todo.id))}
+                        className="mr-2"
+                      />
+                      <strong className="text-gray-500">{todo.purpose}</strong>
+                    </span>
+                    <img
+                      className="w-[13px] h-[13px] cursor-pointer"
+                      onClick={() => dispatch(handleDelete(todo.id))}
+                      src="https://cdn-icons-png.flaticon.com/128/657/657059.png"
+                      alt="delete"
+                    />
+                  </div>
+                  <p className="h-23 text-[17px] text-gray-800">{todo.task}</p>
+                  <div className="border-t-2 py-2 flex justify-between border-gray-500">
+                    <p className="text-gray-800 text-sm">{todo.date}</p>
+                    <p className="text-gray-800 text-sm">
+                      {todo.time || "No due time"}
+                    </p>
+                  </div>
+                </li>
+              </div>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 }
