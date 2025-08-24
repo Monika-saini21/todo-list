@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CalendarList from "./CalendarList";
+import CalendarList from "./CalendarList.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { handleDelete } from "../features/taskSlice";
 

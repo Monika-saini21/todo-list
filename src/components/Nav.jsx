@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import Button from "./button";
+import Button from "./Button.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchQuery } from "../features/searchSlice";
 
