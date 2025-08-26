@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CalendarList from "./CalendarList";
+import CalendarList from "./CalendarList.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { handleDelete } from "../features/taskSlice";
 
@@ -29,8 +29,8 @@ function Calendar() {
  console.log(daysInMonth,FirstDayOfMonth)
   return (
     <div className="  flex justify-center  items-center ">
-    <div className="  px-3  h-130 mt-5 rounded-2xl flex-wrap border-8 flex justify-center  round[20rem]  border-gray-200" >
-      <div className=" m-4 w-90 " >
+    <div className="  md:px-3  md:w-244 w-full  h-130 mt-5 rounded-2xl   flex-wrap  flex justify-center  round-[20rem] " >
+      <div className=" m-4 w-90  " >
         <h1  className="text-4xl font-bold ">CALENDAR</h1>
         <div className="flex justify-between my-5">
           <h2 className="text-2xl cursor-pointer">{monthsOfYears[currentMonth]} {currentYear}</h2>

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import Tasklist from "./Tasklist";
+import Tasklist from "./Tasklist.jsx";
 import {
   setShow,
   handleInput,
@@ -27,7 +27,7 @@ function TodoFome() {
       {show && (
         <div className="fixed top-0 left-0 w-full h-full bg-black/60 flex items-center justify-center z-[999]">
           <form
-            className={`absolute flex flex-col left-[40%] gap-5 ${
+            className={`absolute flex flex-col md:left-[40%] gap-5 ${
               isDark ? "bg-gray-800" : "bg-gray-300"
             } p-5 rounded-lg`}
             onSubmit={(e) => {
@@ -85,7 +85,7 @@ function TodoFome() {
               onChange={(e) =>
                 dispatch(handleInput({ name: e.target.name, value: e.target.value }))
               }
-              className="px-5 py-2 rounded border-none text-gray-600 bg-white"
+              className="px-5 w-full py-2 rounded border-none text-gray-600 bg-white"
             />
 
             {/* Date Input */}
@@ -96,7 +96,7 @@ function TodoFome() {
               onChange={(e) =>
                 dispatch(handleInput({ name: e.target.name, value: e.target.value }))
               }
-              className="px-5 py-2 rounded border-none text-gray-600 bg-white"
+              className="px-5 py-2 w-full rounded border-none text-gray-600 bg-white"
             />
 
             {/* Submit Button */}

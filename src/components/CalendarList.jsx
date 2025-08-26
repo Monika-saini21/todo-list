@@ -13,12 +13,12 @@ function CalendarList ({Todo ,handleDelete}){
         .includes((searchQuery || "").toLowerCase())
     );
     return(
-        <div className="flex-col">
+        <div className="flex-col w-full pb-9 md:pb-0 md:w-130">
                   {filteredTodos.length > 0 ? (
                     filteredTodos.map((todo) => (
                       <div
                         key={todo.id}
-                        className="bg-gray-200 m-9 mb-3 mt-5 h-20 shadow-md shadow-gray-400 rounded-2xl flex p-1"
+                        className="bg-gray-200 md:m-9 mb-3 m-4 mt-5 h-20 shadow-md shadow-gray-400 rounded-2xl flex p-1"
                       >
                         <div className="border-r-2 border-gray-700 pt-1 pb-3">
                           <div className="px-3 text-center text-sm text-gray-800">
@@ -38,7 +38,7 @@ function CalendarList ({Todo ,handleDelete}){
                       </div>
                     ))
                   ) : (
-                    <div className="w-130 bg-gray-200 flex items-center justify-center h-110 m-8 rounded-2xl">
+                    <div className="md:w-130 bg-gray-200 flex items-center justify-center md:h-110 h-90 m-4 md:m-8 rounded-2xl">
                       <span>
                         <img
                           className="w-40"
