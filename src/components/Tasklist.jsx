@@ -93,7 +93,7 @@ function Tasklist() {
         <>
          
           <ul
-            className={`flex flex-col mb-4 ml-4 md:ml-0 flex-wrap px-6 mt-5 justify-start  rounded-xl md:w-270 ${
+            className={`flex flex-col mb-4 mx-6 md:mx-0 flex-wrap px-6 mt-5 justify-start  rounded-xl md:w-270 ${
               isDark ? "bg-gray-800" : "bg-gray-100"
             }`}
           >
